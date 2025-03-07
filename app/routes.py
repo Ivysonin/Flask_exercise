@@ -3,7 +3,11 @@ from flask import render_template, url_for
 
 @app.route('/')
 def homepage():
-    return render_template('index.html')
+    context = {
+        'usuario':'Ivyson',
+        'idade':16
+    }
+    return render_template('index.html', context=context)
 
 @app.route('/novapágina')
 def novapag():
