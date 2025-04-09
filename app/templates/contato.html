@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="row mt-4">
-            <h3>Contato</h3>
+            <h3>Formulário GET</h3>
         </div>
             <form action="" method="get" class="row mt-4">
                 <div class="col-9">
@@ -20,8 +20,37 @@
                     <button type="submit" class="btn btn-primary mt-4 col-12">Pesquisar</button>
                 </div>
             </form>
-
             <p>Você digitou: {{context['pesquisa']}}</p>
+
+        <hr>
+        <hr>
+
+        <div class="row">
+            <h3>Formulário POST</h3>
+        </div>
+
+        <form action="" method="post" class="row mt-4">
+            <div class="col-6">
+                Nome
+                <input type="text" name="nome" id="" class="form-control" required>
+            </div>
+            <div class="col-6">
+                E-mail
+                <input type="email" name="email" id="" class="form-control" required>
+            </div>
+            <div class="col-12">
+                Assunto
+                <input type="text" name="assunto" id="" class="form-control" required>
+            </div>
+            <div class="col-12">
+                Mensagem
+                <input type="text" name="mensagem" id="" class="form-control" required>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-dark mt-4 col-12">Salvar</button>
+            </div>
+        </form>
 
     </div>
 
