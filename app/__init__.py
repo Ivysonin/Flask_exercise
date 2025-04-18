@@ -15,6 +15,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # Desabilidando o 'check' que faz a cada modificação(não é obrigatório)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
+# 1. Sempre pegar uma senha aleatória 
+# 2. Nunca deixar essa senha exposta, o ideal é está em uma variável de ambiente
+app.config['SECRET_KEY'] = 'senhaAleatoria244393285jkgbfjeg5i8'
+
+
 # Para o meu 'app' quero criar esse banco de dados
 db = SQLAlchemy(app)
 
