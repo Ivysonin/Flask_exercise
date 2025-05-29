@@ -1,6 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from dotenv import load_dotenv
+import os
+# Carregando as variáveis de ambiente
+load_dotenv('.env')
 
 
 # Criando a aplicação Flask
@@ -9,15 +13,14 @@ app = Flask(__name__)
 
 # Definindo onde vai ficar o banco de dados
             # Pegando a URI e colocando na configuração de app
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-                                        # Definindo qual que é o caminho(vai criar um arquivo quando rodar o comando para criar o banco de dados)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+
 
 # Desabilidando o 'check' que faz a cada modificação(não é obrigatório)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
-# 1. Sempre pegar uma senha aleatória 
-# 2. Nunca deixar essa senha exposta, o ideal é está em uma variável de ambiente
-app.config['SECRET_KEY'] = 'senhaAleatoria244393285jkgbfjeg5i8'
+# Sempre pegar uma senha aleatória 
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 # Para o meu 'app' quero criar esse banco de dados
