@@ -2,6 +2,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
+
 import os
 # Carregando as variáveis de ambiente
 load_dotenv('.env')
@@ -33,6 +36,12 @@ por meio de comandos consigo alterar o arquivo e usar um comando que faz tudo au
 '''
 migrate = Migrate(app, db)
 
+login_manager = LoginManager(app)
+
+# Páginas só podem ser acessadas se houver um usuário logado
+login_manager.login_view = 'login' # se o usuário não estiver logado, envia para essa pág 'login'
+
+bcrypt = Bcrypt(app)
 
 from app.routes import homepage
 from app.models import Contato
