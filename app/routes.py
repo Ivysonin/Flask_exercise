@@ -1,7 +1,8 @@
 from app import app
 from flask import render_template, url_for, redirect, request
-from app.forms import ContatoForm
+from app.forms import ContatoForm, UserForm
 from app.models import Contato
+from flask_login import login_user, current_user
 
 @app.route('/')
 def homepage():
@@ -10,6 +11,16 @@ def homepage():
         'idade':16
     }
     return render_template('index.html', context=context)
+
+
+@app.route('/cadastro/', methods=['GET', 'POST'])
+def cadastro():
+    form = UserForm()
+    if form.validate_on_submit():
+        user = form.save()
+        login_user(user, remember=True)
+        return redirect(url_for('homepage'))
+    return render_template('cadastro.html', form=form)
 
 
 @app.route('/contato/', methods=['GET', 'POST'])
