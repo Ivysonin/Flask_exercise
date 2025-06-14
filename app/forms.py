@@ -10,12 +10,12 @@ class UserForm(FlaskForm):
     sobrenome = StringField('Sobrenome', validators=[data_required()])
     email = StringField('E-Mail', validators=[data_required(), Email()])
     senha = PasswordField('Senha', validators=[data_required()])
-    confirmacao_senha = PasswordField('Senha', validators=[data_required(), EqualTo('senha')])
+    confirmacao_senha = PasswordField('Confirmação da Senha', validators=[data_required(), EqualTo('senha')])
     btnSubmit = SubmitField('Cadastrar')
 
     def validate_email(self, email):
         # Estou acessando o db e procurando se tem algum 'email' igual, se tiver retorna um erro.
-        if User.query.filter(email=email.data).first():
+        if User.query.filter(User.email == email.data).first():
             return ValidationError('Usuário Já Cadastrado com esse E-mail!!!')
 
     def save(self):
