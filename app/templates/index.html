@@ -8,10 +8,18 @@
     <p>e tenho {{ context.idade }} anos</p>
 
     {% include 'nav.html' %}
+    <br><br>
 
-    <br>
-    <br>
+    <!-- Se o usuário estiver logado vai aparecer o nome e sobrenome, Se não aparece para ele fazer o cadastro -->
+    {% if current_user.is_authenticated %} <!-- Se retorna: True -->
+        <span class="btn btn-primary">{{ current_user.nome }} {{ current_user.sobrenome }}</span>
+        <a href="" class="btn btn-danger">Sair</a>
+    {% else %}
+        <a href="{{ url_for('cadastro') }}" class="btn btn-primary">Faça seu Cadastro</a>
+    {% endif %}
     
+
+    <hr>
     <img src="{{ url_for('static', filename='img/foto_kurama.jfif') }}">
 
 {% endblock %}
