@@ -1,16 +1,23 @@
 from app import app
 from flask import render_template, url_for, redirect, request
-from app.forms import ContatoForm, UserForm
+from app.forms import ContatoForm, UserForm, LoginForm
 from app.models import Contato
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def homepage():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        # Fazendo o login do usuário
+        user = form.login()
+        login_user(user, remember=True)
+
     context = {
         'usuario':'Ivyson',
         'idade':16
     }
-    return render_template('index.html', context=context)
+    return render_template('index.html', context=context, form=form)
 
 
 @app.route('/cadastro/', methods=['GET', 'POST'])
@@ -21,6 +28,13 @@ def cadastro():
         login_user(user, remember=True)
         return redirect(url_for('homepage'))
     return render_template('cadastro.html', form=form)
+
+
+# Deslogando o Usuário
+@app.route('/sair/', methods=['GET', 'POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('homepage'))
 
 
 @app.route('/contato/', methods=['GET', 'POST'])
