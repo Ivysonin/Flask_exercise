@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <h3>Olá mundo !</h3>
-    <p>essa é minha primeira página web</p>
-    <p>Meu nome é {{ context.usuario }}</p>
-    <p>e tenho {{ context.idade }} anos</p>
+<div class="container">
 
     {% include 'nav.html' %}
     <br><br>
@@ -13,13 +9,27 @@
     <!-- Se o usuário estiver logado vai aparecer o nome e sobrenome, Se não aparece para ele fazer o cadastro -->
     {% if current_user.is_authenticated %} <!-- Se retorna: True -->
         <span class="btn btn-primary">{{ current_user.nome }} {{ current_user.sobrenome }}</span>
-        <a href="" class="btn btn-danger">Sair</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">Sair</a>
+
     {% else %}
-        <a href="{{ url_for('cadastro') }}" class="btn btn-primary">Faça seu Cadastro</a>
+        <h3>Faça seu Login</h3>
+        <form action="" method="post" class="row mt-4 p-4 rounde border shadow">
+            {{ form.csrf_token }}
+
+            {{ form.email.label() }}
+            {{ form.email(class="form-control") }}
+
+            {{ form.senha.label() }}
+            {{ form.senha(class="form-control") }}
+                
+            {{ form.btnSubmit(class="btn btn-primary col-12 mt-3") }}   
+        </form>
+        <div class="col-12 mt-4">Não tem cadastro? <a href="{{ url_for('cadastro') }}" >Clique aqui e faça seu cadastro</a></div>
+        
     {% endif %}
     
 
     <hr>
     <img src="{{ url_for('static', filename='img/foto_kurama.jfif') }}">
-
+</div>
 {% endblock %}
