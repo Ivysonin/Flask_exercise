@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     email =  db.Column(db.String, nullable=False)
     senha = db.Column(db.String, nullable=False)
     posts = db.relationship('Post', backref='user', lazy=True) # Não é uma coluna e sim uma relação
+    post_comentarios = db.relationship('PostComentarios', backref='user', lazy=True) # Não é uma coluna e sim uma relação
 
 
 class Contato(db.Model):
@@ -33,6 +34,15 @@ class Post(db.Model):
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow()) # utcnow: Pegando horário padrão universal
     mensagem = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    comentarios = db.relationship('PostComentarios', backref='post', lazy=True) # Não é uma coluna e sim uma relação
 
     def msg_resumo(self):
         return f"{self.mensagem[:10]}..."
+
+
+class PostComentarios(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data_criacao = db.Column(db.DateTime, default=datetime.utcnow())
+    comentario = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
