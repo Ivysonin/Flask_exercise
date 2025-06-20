@@ -39,7 +39,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
 # Páginas só podem ser acessadas se houver um usuário logado
-login_manager.login_view = 'login' # se o usuário não estiver logado, envia para essa pág 'login'
+login_manager.login_view = 'homepage' # se o usuário não estiver logado, envia para essa pág 'login'
 
 bcrypt = Bcrypt(app)
 
