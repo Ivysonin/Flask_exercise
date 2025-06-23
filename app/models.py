@@ -33,6 +33,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow()) # utcnow: Pegando horário padrão universal
     mensagem = db.Column(db.String, nullable=False)
+    imagem = db.Column(db.String, nullable=True, default='default.png')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     comentarios = db.relationship('PostComentarios', backref='post', lazy=True) # Não é uma coluna e sim uma relação
 
