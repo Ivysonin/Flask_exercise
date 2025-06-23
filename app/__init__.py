@@ -26,6 +26,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
+# Pasta que vai ser salva os uploads de arquivo
+app.config['UPLOAD_FOLDER'] = r'static/data' # Usando 'r' para o python não usar caracteres especial como um comando especial
+
+
 # Para o meu 'app' quero criar esse banco de dados
 db = SQLAlchemy(app)
 
