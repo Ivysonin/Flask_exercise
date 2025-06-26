@@ -19,7 +19,7 @@ Projeto feito através de um curso do canal [Camp Code](https://www.youtube.com/
 - Python
 - Flask
 - Jinja2
-- SQLite e PostgreSQL
+- SQLite
 - HTML + CSS
 - Bootstrap
 
@@ -62,7 +62,7 @@ Durante o desenvolvimento deste projeto, tive a oportunidade de praticar e conso
 
 - Estruturação de aplicações Flask com múltiplas rotas e templates
 - Manipulação de formulários e envio de dados via POST
-- Integração com banco de dados usando SQLite e PostgreSQL
+- Integração com banco de dados usando SQLite
 - Upload e tratamento de imagens no backend
 - Conceitos de autenticação e controle de sessão
 - Deploy de aplicações Flask na nuvem com Render
