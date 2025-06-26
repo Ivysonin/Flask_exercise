@@ -22,7 +22,7 @@ class UserForm(FlaskForm):
 
     def save(self):
         # Criptografando a senha
-        senha = bcrypt.generate_password_hash(self.senha.data).decode('utf-8')
+        senha = bcrypt.generate_password_hash(self.senha.data.encode('utf-8'))
         user = User(
             nome = self.nome.data,
             sobrenome = self.sobrenome.data,
@@ -46,7 +46,7 @@ class LoginForm(FlaskForm):
         # Verifica se está vindo um usuário
         if user: 
             # Verificando se a senha é valida
-            if bcrypt.check_password_hash(user.senha, self.senha.data):
+            if bcrypt.check_password_hash(user.senha, self.senha.data.encode('utf-8')):
                 return user
             else:
                 raise Exception('Senha incorreta!!!')
