@@ -1,0 +1,13 @@
+meu_projeto/
+├── app/
+│   ├── controllers/        # Funções que recebem as requisições HTTP
+│   │   └── user_controller.py
+│   ├── services/           # Regras de negócio e lógica mais complexa
+│   │   └── user_service.py
+│   ├── models/             # Definições de dados e ORM (ex: SQLAlchemy)
+│   │   └── user_model.py
+│   ├── templates/          # HTML (caso use Flask com Jinja2)
+│   │   └── user.html
+│   ├── __init__.py         # Inicializa a aplicação
+│   └── config.py           # Configurações da aplicação (ex: banco, debug)
+└── run.py                  # Ponto de entrada do app
